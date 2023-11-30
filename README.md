@@ -10,6 +10,32 @@
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 
+## Case Encoding
+This fork includes support for inline case encoding in SPM, as described in [[Perplexity-Driven Case Encoding Needs Augmentation for CAPITALIZATION Robustness](http://www.afnlp.org/conferences/ijcnlp2023/proceedings/main-short/cdrom/pdf/2023.ijcnlp-short.17.pdf)]. Please see our paper for more details. 
+
+The case encoding can be learned as follows: 
+```
+spm_train --encode_unicode_case --treat_whitespace_as_suffix --input training_data --model-prefix case_encoded
+```
+This fork must then also be used for spm_encode and spm_decode. 
+For optimal results, this encoding should to be combined with data augmentation, as described in the paper. 
+
+If you use our method, please cite it as: 
+```
+@InProceedings{jain-etal-2023-perplexity,
+  author    = {Jain, Rohit  and  Khayrallah, Huda  and  Grundkiewicz, Roman  and  Junczys-Dowmunt, Marcin},
+  title     = {Perplexity-Driven Case Encoding Needs Augmentation for CAPITALIZATION Robustness},
+  booktitle      = {Proceedings of the 13th International Joint Conference on Natural Language Processing and the 3rd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics},
+  month          = {November},
+  year           = {2023},
+  address        = {Nusa Dua, Bali},
+  publisher      = {Association for Computational Linguistics},
+}
+```
+
+
+
+## SentencePiece
 SentencePiece is an unsupervised text tokenizer and detokenizer mainly for
 Neural Network-based text generation systems where the vocabulary size
 is predetermined prior to the neural model training. SentencePiece implements
