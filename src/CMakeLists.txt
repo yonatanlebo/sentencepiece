@@ -159,6 +159,10 @@ set(SPM_TEST_SRCS
 find_package(Threads REQUIRED)
 
 set(SPM_LIBS ${PROTOBUF_LITE_LIBRARY} Threads::Threads)
+if(CMAKE_SYSTEM_NAME STREQUAL "Android")
+  # link android log library
+  list(APPEND SPM_LIBS log)
+endif()
 
 if (SPM_ENABLE_NFKC_COMPILE)
   find_package(ICU 4.4 COMPONENTS i18n data uc REQUIRED)
